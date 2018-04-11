@@ -1,0 +1,96 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+<title>VA EA Business Reference model</title>
+
+<!-- Bootstrap -->
+<link rel="stylesheet" href="../style/bootstrap.min.css" />
+<link rel="stylesheet" href="../style/bootstrap-theme.min.css" />
+<link rel="stylesheet" href="../style/Treant.css">
+<link rel="stylesheet" href="../style/tree.css">
+<link rel="stylesheet" href="../style/vaea.css">
+</head>
+<body>
+	<!--  Start Header -->
+	<div class="container-fluid">
+		<div class="main-header clearfix">
+			<div id="main-logo">
+				<a href="https://www.va.gov" title="Go to VA.gov" class="logo"><img
+					src="../img/va/header-logo.png"
+					alt="Official seal of the United States Department of Veterans Affairs" /></a>
+			</div>
+			<div id="header-text">
+				<h4 style="border-bottom: 1px solid white">VA Enterprise
+					Architecture</h4>
+				<h4>VA Business Reference Model</h4>
+			</div>
+		</div>
+		<div class="container-fluid">
+
+			<p class="bg-success">The VA BRM model hierarchically depicts the
+				comprehensive set of VA Mission Areas, capabilities, services (top
+				three levels) and business functions at levels 4 and below that are
+				owned and defined by the administrations and/or Staff Offices.</p>
+		</div>
+
+
+		<!--  End Header -->
+		<div class="chart" id="custom-colored">
+			<img alt="loading" src="../img/ie-gif-80x80.gif" />
+		</div>
+		<!--  End Body -->
+		<!--  Start Footer -->
+		<br />
+
+		<div id="footer">
+			<div class="btn-group">
+				<a title="Intranet site for Department of Veterans Affairs"
+					target="_blank" href="http://vaww.va.gov/">VA Intranet Home</a> | <a
+					title="Intranet site for Veterans Health Administration"
+					target="_blank" href="http://vaww.va.gov/health/">VHA Intranet
+					Home</a> | <a
+					title="Intranet site for Veterans Benefits Administration"
+					target="_blank" href="http://vbaw.vba.va.gov/">VBA Intranet
+					Home</a> | <a
+					title="Intranet site for National Cemetery Administration"
+					target="_blank" href="http://vaww.nca.va.gov/">NCA Intranet
+					Home</a> | <a title="Section 508 Accessibility" target="_blank"
+					href="http://vaww.section508.va.gov/">Section 508 Accessibility</a>
+				| <a title="Privacy policy" target="_blank"
+					href="http://www.va.gov/privacy/">Privacy Policy</a> | <a
+					title="No Fear Act information" target="_blank"
+					href="http://vaww.va.gov/ohrm/EmployeeRelations/grievance.htm">No
+					Fear Act</a> | <a title="VA Enterprise Architecture Website"
+					target="_blank" href="http://vaww.ea.oit.va.gov">VA Enterprise
+					Architecture</a>
+			</div>
+		</div>
+	</div>
+	<!--  End Footer -->
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="../scripts/jquery.min.js"></script>
+	<script src="../scripts/bootstrap.min.js"></script>
+	<script src="../scripts/raphael.js"></script>
+	<script src="../scripts/Treant.js"></script>
+	<script>
+		$.ajaxSetup({async: false});
+		$.getJSON("../bffs/1054", function(result){  
+			new Treant(result); 
+	       });
+	
+		$(".node-data-ns").hide(); 
+		$("[id^=node]").hover(function(){    		  		
+	   		$(this).css("border","2px solid grey");
+	   		/*$(this).attr("title", "Number of Systems =" + $(this).find(".node-data-ns").text());*/
+	   	},
+	   	 function(){
+	   		$(this).css("border","2px solid lightgrey");
+	   	});	
+		$.ajaxSetup({async: true});
+    </script>
+</body>
+</html>

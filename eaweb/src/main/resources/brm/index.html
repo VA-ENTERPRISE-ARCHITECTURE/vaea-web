@@ -1,0 +1,158 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+<title>VA Business Reference Model</title>
+
+<!-- Bootstrap -->
+<link rel="stylesheet" href="../style/bootstrap.min.css" />
+<link rel="stylesheet" href="../style/bootstrap-theme.min.css" />
+<link rel="stylesheet" href="../style/Treant.css">
+<link rel="stylesheet" href="../style/tree.css">
+<link rel="stylesheet" href="../style/vaea.css">
+
+</head>
+<body>
+	<!--  Start Header -->
+	<div class="container-fluid">
+		<div class="main-header clearfix">
+			<div id="main-logo">
+				<a href="https://www.va.gov" title="Go to VA.gov" class="logo"><img
+					src="https://www.va.gov/va_files/2014/responsive/images/header-logo.png"
+					alt="Official seal of the United States Department of Veterans Affairs" /></a>
+			</div>
+			<div id="header-text">
+				<h4 style="border-bottom: 1px solid white">VA Enterprise
+					Architecture</h4>
+				<h4>VA Business Reference Model (BRM)</h4>
+			</div>
+		</div>
+		<div class="container-fluid">
+			<div class="alert alert-primary" role="alert">
+				The VA BRM model hierarchically depicts the comprehensive set of VA
+				Categories, Capabilities, Functions (top 3 levels) and Business
+				Functions at levels 4 and below that are owned and defined by the
+				administrations and/or Staff Office <br /> To visualize the VA BRM,
+				please select your preferred orientation by selecting an option in
+				the “Select Diagram Layout” field, and select the “Show full BRM”
+				option in the “Filter by Capability” field. <br /> To visualize a
+				segment of the VA BRM capabilities functions and business functions,
+				please select your preferred orientation by selecting the “Select
+				Diagram Layout” field, and select the one of the 18 capabilities in
+				the “Filter by Capability” field.
+			</div>
+		</div>
+		<div class="container-fluid">
+			<form>
+				<div class="form-row">
+					<div class="form-group col-md-2">
+						<label for="layout">Select Diagram Layout</label> <select
+							id="layout" class="form-control">
+							<option value='NORTH' selected="selected">Top Down</option>
+							<option value='WEST'>Left to Right</option>
+						</select>
+					</div>
+					<div class="form-group col-md-4">
+						<label for="capabilty">Filter By Capability</label> <select
+							id="capability" class="form-control">
+							<option value='1054' selected="selected">Show full BRM</option>
+							<option value='1074'>1.1 : Provide Benefits and Services
+								for Veterans and Beneficiaries</option>
+							<option value='792'>1.2 : Conduct Disaster Management
+								Activities</option>
+							<option value='1524'>2.1 : Conduct Acquisition
+								Management</option>
+							<option value='1420'>2.2 : Conduct Budget Formulation</option>
+							<option value='844'>2.3 : Conduct Financial Management</option>
+							<option value='913'>2.4 : Perform Grants Management</option>
+							<option value='850'>2.5 : Conduct Human Capital
+								Management</option>
+							<option value='859'>2.6 : Provide Information and
+								Technology Services</option>
+							<option value='1732'>2.7 : Conduct Mail Operations
+								Management</option>
+							<option value='1744'>2.8 : Perform Property Management</option>
+							<option value='869'>2.9 : Perform Sales Order and
+								Fulfillment Management</option>
+							<option value='1845'>2.10 : Conduct Travel, Relocation
+								and Fleet Management</option>
+							<option value='806'>2.11 : Conduct Congressional,
+								Legislative, and Regulatory Affairs</option>
+							<option value='1827'>2.12 : Plan and Execute VA
+								Operating Model</option>
+							<option value='1840'>2.13 : Provide Organizational
+								Leadership and Administrative Support</option>
+							<option value='800'>2.14 : Provide Legal Guidance and
+								Representation</option>
+							<option value='802'>2.15 : Conduct Service Continuity</option>
+							<option value='840'>2.16 : Manage Physical and Personnel
+								Security</option>
+						</select>
+					</div>
+				</div>
+				<br />
+				<button type="submit" class="btn btn-primary">Show BRM</button>
+			</form>
+		</div>
+
+		<!--  End Header -->
+		<div class="chart" id="custom-colored"></div>
+		<!--  End Body -->
+		<!--  End Body -->
+		<!--  Start Footer -->
+		<br />
+
+		<div id="footer">
+			<div class="btn-group">
+				<a title="Intranet site for Department of Veterans Affairs"
+					target="_blank" href="http://vaww.va.gov/">VA Intranet Home</a> | <a
+					title="Intranet site for Veterans Health Administration"
+					target="_blank" href="http://vaww.va.gov/health/">VHA Intranet
+					Home</a> | <a
+					title="Intranet site for Veterans Benefits Administration"
+					target="_blank" href="http://vbaw.vba.va.gov/">VBA Intranet
+					Home</a> | <a
+					title="Intranet site for National Cemetery Administration"
+					target="_blank" href="http://vaww.nca.va.gov/">NCA Intranet
+					Home</a> | <a title="Section 508 Accessibility" target="_blank"
+					href="http://vaww.section508.va.gov/">Section 508 Accessibility</a>
+				| <a title="Privacy policy" target="_blank"
+					href="http://www.va.gov/privacy/">Privacy Policy</a> | <a
+					title="No Fear Act information" target="_blank"
+					href="http://vaww.va.gov/ohrm/EmployeeRelations/grievance.htm">No
+					Fear Act</a> | <a title="VA Enterprise Architecture Website"
+					target="_blank" href="http://vaww.ea.oit.va.gov">VA Enterprise
+					Architecture</a>
+			</div>
+		</div>
+	</div>
+	<!--  End Footer -->
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="../scripts/jquery.min.js"></script>
+	<script src="../scripts/bootstrap.min.js"></script>
+	<script src="../scripts/raphael.js"></script>
+	<script src="../scripts/Treant.js"></script>
+	<script>
+	    $("form").submit(function(){
+	    	var json_url = '../bffs/' + $("#capability").val() + '/' + $("#layout").val();
+	        $.getJSON(json_url, function(result){
+	        	new Treant(result); 
+		       });
+		
+			$(".node-data-ns").hide(); 
+			$("[id^=node]").hover(function(){    		  		
+		   		$(this).css("border","2px solid grey");
+		   		/*$(this).attr("title", "Number of Systems =" + $(this).find(".node-data-ns").text());*/
+		   	},
+		   	 function(){
+		   		$(this).css("border","2px solid lightgrey");
+		   	});	
+	        event.preventDefault();
+	    });
+
+</script>
+</body>
+</html>
