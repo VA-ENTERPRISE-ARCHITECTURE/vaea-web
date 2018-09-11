@@ -59,6 +59,7 @@
 						<label for="capabilty">Filter By Capability</label> <select
 							id="capability" class="form-control">
 							<option value='1054' selected="selected">Show full BRM</option>
+							<!-- 
 							<option value='1074'>1.1 : Provide Benefits and Services
 								for Veterans and Beneficiaries</option>
 							<option value='792'>1.2 : Conduct Disaster Management
@@ -90,6 +91,7 @@
 							<option value='802'>2.15 : Conduct Service Continuity</option>
 							<option value='840'>2.16 : Manage Physical and Personnel
 								Security</option>
+								 -->
 						</select>
 					</div>
 				</div>
@@ -136,6 +138,17 @@
 	<script src="../scripts/raphael.js"></script>
 	<script src="../scripts/Treant.js"></script>
 	<script>
+	
+	    $().ready(function(){ //on Initial Load of page get Capabilities and populate the Capabilities drop-down
+	    	var capability_data_url = "../capabilities";
+	    	$.getJSON(capability_data_url,function(data){
+	    		$.each(data, function(key, entry){
+	    			$('#capability').append($('<option></option>').attr('value',entry.businessFunctionId).text(entry.hierarchyNumber+' : '+entry.businessFunctionName));
+	    		}); 
+	    	});
+	    });
+	    
+	    
 	    $("form").submit(function(){
 	    	var json_url = '../bffs/' + $("#capability").val() + '/' + $("#layout").val();
 	        $.getJSON(json_url, function(result){
