@@ -12,6 +12,9 @@ import gov.va.ea.web.model.Capability;
 @Repository
 public class CapabilityDAO extends BaseDAO {
 
+    /*
+     * Get the capabilities ordered by HIERARCHY_NUMBER
+     */
     public List<Capability> getCapabilities() {
 	return jdbcTemplate.query(BRM_CAPABILITY_QUERY, new CapabilityMapper());
     }
